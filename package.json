@@ -2,9 +2,13 @@
   "name": "js-capstone-project",
   "version": "1.0.0",
   "description": "RPG Game",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx webpack --mode development",
+    "start": "npx webpack serve",
+    "build": "npx webpack --mode production",
+    "watch": "npx webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -24,6 +28,15 @@
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-csstree-validator": "^1.9.0",
-    "stylelint-scss": "^3.17.2"
+    "stylelint-scss": "^3.17.2",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
+    "babel-loader": "8.0.0-beta.0",
+    "phaser": "^3.52.0"
   }
 }
