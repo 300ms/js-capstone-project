@@ -20,17 +20,17 @@ const BattleScene = new Phaser.Class({
   },
   startBattle() {
     // player character - warrior
-    const warrior = new PlayerCharacter(this, 250, 50, 'player', 1, 'Warrior', 100, 20);
+    const warrior = new PlayerCharacter(this, 250, 50, 'player', 1, 'Warrior', 10, 5);
     this.add.existing(warrior);
 
     // player character - mage
-    const mage = new PlayerCharacter(this, 250, 100, 'player', 4, 'Mage', 80, 8);
+    const mage = new PlayerCharacter(this, 250, 100, 'player', 4, 'Mage', 10, 5);
     this.add.existing(mage);
 
-    const dragonblue = new Enemy(this, 50, 50, 'enemy', 17, 'Dragon', 50, 3);
+    const dragonblue = new Enemy(this, 50, 50, 'enemy', 17, 'Dragon', 11, 3);
     this.add.existing(dragonblue);
 
-    const dragonOrange = new Enemy(this, 50, 100, 'enemy', 18, 'Dragon2', 50, 3);
+    const dragonOrange = new Enemy(this, 50, 100, 'enemy', 18, 'Dragon2', 10, 3);
     this.add.existing(dragonOrange);
 
     // array with heroes
@@ -85,10 +85,22 @@ const BattleScene = new Phaser.Class({
     for (let i = 0; i < this.heroes.length; i++) {
       if (this.heroes[i].living) gameOver = false;
     }
+
     return victory || gameOver;
   },
   endBattle() {
     // clear state, remove sprites
+    this.worldScene = this.scene.get('WorldScene');
+    this.enemies.forEach((enemy) => {
+      if (enemy.hp > 0) {
+        this.worldScene.setScore(-10);
+      }
+    });
+    this.heroes.forEach((hero) => {
+      if (hero.hp > 0) {
+        this.worldScene.setScore(10);
+      }
+    });
     this.heroes.length = 0;
     this.enemies.length = 0;
     for (let i = 0; i < this.units.length; i++) {

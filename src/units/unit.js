@@ -33,6 +33,14 @@ const Unit = new Phaser.Class({
       this.living = false;
       this.visible = false;
       this.menuItem = null;
+      /* const worldScene = this.scene.get('WorldScene');
+      if (this.type === 'Warrior' || this.type === 'Mage') {
+        worldScene.score += 10;
+        console.log(`${this.worldScene.score}`);
+      } else {
+        worldScene.score -= 10;
+        console.log(`${this.worldScene.score}`);
+      } */
     }
   },
 });

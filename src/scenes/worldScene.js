@@ -16,8 +16,9 @@ const WorldScene = new Phaser.Class({
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
     // const grass = map.createStaticLayer('Grass', tiles, 0, 0);
-    const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
-    // let score = 0;
+    const obstacles = map.createLayer('Obstacles', tiles, 0, 0);
+    this.score = 0;
+    this.scoreText = this.add.text(8, 8, `Score: ${this.score}`, { fontSize: '12px', fill: '#fff' });
     obstacles.setCollisionByExclusion([-1]);
     this.player = this.physics.add.sprite(50, 100, 'player', 6);
     this.physics.world.bounds.width = map.widthInPixels;
@@ -76,7 +77,7 @@ const WorldScene = new Phaser.Class({
     // this.cameras.main.shake(duration);
     // this.cameras.main.fade(duration);
     // start battle
-    this.scene.switch('BattleScene', score);
+    this.scene.switch('BattleScene');
   },
   update(time, delta) {
     this.player.body.setVelocity(0);
@@ -112,6 +113,13 @@ const WorldScene = new Phaser.Class({
     this.cursors.right.reset();
     this.cursors.up.reset();
     this.cursors.down.reset();
+  },
+  getScore() {
+    return this.score;
+  },
+  setScore(score) {
+    this.score += score;
+    this.scoreText.setText(`Score: ${this.score}`);
   },
 });
 
