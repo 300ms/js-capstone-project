@@ -3,6 +3,7 @@ import bootScene from '../scenes/bootScene';
 import worldScene from '../scenes/worldScene';
 import uiScene from '../scenes/uiScene';
 import battleScene from '../scenes/battleScene';
+import highScoresScene from '../scenes/highScoresScene';
 
 const config = {
   type: Phaser.AUTO,
@@ -19,10 +20,12 @@ const config = {
     },
   },
   scene: [
+    // entryScene,
     bootScene,
     worldScene,
     battleScene,
     uiScene,
+    highScoresScene,
   ],
 };
 

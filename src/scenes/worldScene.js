@@ -15,8 +15,9 @@ const WorldScene = new Phaser.Class({
   create() {
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
-    const grass = map.createStaticLayer('Grass', tiles, 0, 0);
+    // const grass = map.createStaticLayer('Grass', tiles, 0, 0);
     const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
+    // let score = 0;
     obstacles.setCollisionByExclusion([-1]);
     this.player = this.physics.add.sprite(50, 100, 'player', 6);
     this.physics.world.bounds.width = map.widthInPixels;
@@ -75,7 +76,7 @@ const WorldScene = new Phaser.Class({
     // this.cameras.main.shake(duration);
     // this.cameras.main.fade(duration);
     // start battle
-    this.scene.switch('BattleScene');
+    this.scene.switch('BattleScene', score);
   },
   update(time, delta) {
     this.player.body.setVelocity(0);

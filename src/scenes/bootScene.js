@@ -27,8 +27,34 @@ const BootScene = new Phaser.Class({
   },
 
   create() {
-    this.scene.start('WorldScene');
-    /* this.scene.start('BattleScene'); */
+    this.add.text(100, 50, 'Welcome!');
+    /* this.scene.start('bootScene'); */
+    const newGameButton = this.add.text(100, 100, 'New Game!', { fill: '#0f0' });
+    const highScoresButton = this.add.text(100, 150, 'HighScores!', { fill: '#0f0' });
+
+    newGameButton
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        this.scene.start('WorldScene');
+      })
+      .on('pointerover', () => {
+        newGameButton.setStyle({ fill: '#ff0' });
+      })
+      .on('pointerout', () => {
+        newGameButton.setStyle({ fill: '#0f0' });
+      });
+
+    highScoresButton
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        this.scene.start('HighScoresScene');
+      })
+      .on('pointerover', () => {
+        highScoresButton.setStyle({ fill: '#ff0' });
+      })
+      .on('pointerout', () => {
+        highScoresButton.setStyle({ fill: '#0f0' });
+      });
   },
 });
 
