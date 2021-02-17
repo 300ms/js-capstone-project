@@ -47,6 +47,13 @@ const BootScene = new Phaser.Class({
     highScoresButton
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
+        /* await this.getHighScores()
+          .then((response) => {
+            this.scene.start('HighScoresScene', response);
+          })
+          .catch((error) => {
+            console.log(error);
+          }); */
         this.scene.start('HighScoresScene');
       })
       .on('pointerover', () => {

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import axios from 'axios';
 
 const WorldScene = new Phaser.Class({
 
@@ -28,7 +29,6 @@ const WorldScene = new Phaser.Class({
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
-
     //  animation with key 'left',
     // we don't need left and right as we will use one and flip the sprite
     this.anims.create({
@@ -66,6 +66,7 @@ const WorldScene = new Phaser.Class({
     }
     this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
     this.sys.events.on('wake', this.wake, this);
+    this.input.keyboard.on('keydown_ESC', this.backToMenu, this);
   },
   onMeetEnemy(player, zone) {
     // we move the zone to some other location
@@ -120,6 +121,27 @@ const WorldScene = new Phaser.Class({
   setScore(score) {
     this.score += score;
     this.scoreText.setText(`Score: ${this.score}`);
+  },
+  async backToMenu() {
+    const name = 'Player';
+    this.registerScore(name, this.score).then(() => {
+      this.scene.switch('BootScene');
+    });
+  },
+  async registerScore(name, score) {
+    const parameters = {
+      name,
+      score,
+    };
+    const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/UBfouuLgu88709ObQASP/';
+
+    axios.post(baseUrl, parameters)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 });
 
