@@ -13,7 +13,7 @@
 
   <h3 align="center">Javascript Capstone Project - RPG Game</h3>
   <p align="center">
-    <img src="https://gamedevacademy.org/wp-content/uploads/2018/05/rpg.png.webp" alt="Logo" width="160" height="160">
+    <img src="https://gamedevacademy.org/wp-content/uploads/2018/05/rpg.png.webp" alt="Logo" width="240" height="240">
   </p>
   <p align="center">
     Microverse Full-Stack Web Development Education
