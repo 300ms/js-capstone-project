@@ -14,11 +14,9 @@ const Unit = new Phaser.Class({
     this.living = true;
     this.menuItem = null;
   },
-  // we will use this to notify the menu item when the unit is dead
   setMenuItem(item) {
     this.menuItem = item;
   },
-  // attack the target unit
   attack(target) {
     if (target.living) {
       target.takeDamage(this.damage);
@@ -33,14 +31,6 @@ const Unit = new Phaser.Class({
       this.living = false;
       this.visible = false;
       this.menuItem = null;
-      /* const worldScene = this.scene.get('WorldScene');
-      if (this.type === 'Warrior' || this.type === 'Mage') {
-        worldScene.score += 10;
-        console.log(`${this.worldScene.score}`);
-      } else {
-        worldScene.score -= 10;
-        console.log(`${this.worldScene.score}`);
-      } */
     }
   },
 });

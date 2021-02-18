@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import Phaser from 'phaser';
 import MenuItem from './menuItem';
 
@@ -6,7 +7,7 @@ const Menu = new Phaser.Class({
 
   initialize:
 
-  function Menu(x, y, scene, heroes) {
+  function Menu(x, y, scene) {
     Phaser.GameObjects.Container.call(this, scene, x, y);
     this.menuItems = [];
     this.menuItemIndex = 0;
@@ -20,7 +21,6 @@ const Menu = new Phaser.Class({
     this.add(menuItem);
     return menuItem;
   },
-  // menu navigation
   moveSelectionUp() {
     this.menuItems[this.menuItemIndex].deselect();
     do {
@@ -37,7 +37,6 @@ const Menu = new Phaser.Class({
     } while (!this.menuItems[this.menuItemIndex].active);
     this.menuItems[this.menuItemIndex].select();
   },
-  // select the menu as a whole and highlight the choosen element
   select(index) {
     if (!index) index = 0;
     this.menuItems[this.menuItemIndex].deselect();
@@ -45,21 +44,18 @@ const Menu = new Phaser.Class({
     while (!this.menuItems[this.menuItemIndex].active) {
       this.menuItemIndex++;
       if (this.menuItemIndex >= this.menuItems.length) this.menuItemIndex = 0;
-      if (this.menuItemIndex == index) return;
+      if (this.menuItemIndex === index) return;
     }
     this.menuItems[this.menuItemIndex].select();
     this.selected = true;
   },
-  // deselect this menu
   deselect() {
     this.menuItems[this.menuItemIndex].deselect();
     this.menuItemIndex = 0;
     this.selected = false;
   },
   confirm() {
-    // when the player confirms his slection, do the action
   },
-  // clear menu and remove all menu items
   clear() {
     for (let i = 0; i < this.menuItems.length; i++) {
       this.menuItems[i].destroy();
@@ -67,7 +63,6 @@ const Menu = new Phaser.Class({
     this.menuItems.length = 0;
     this.menuItemIndex = 0;
   },
-  // recreate the menu items
   remap(units) {
     this.clear();
     for (let i = 0; i < units.length; i++) {

@@ -23,7 +23,6 @@ const config = {
     },
   },
   scene: [
-    // entryScene,
     bootScene,
     worldScene,
     battleScene,

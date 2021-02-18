@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import Phaser from 'phaser';
 import axios from 'axios';
 
@@ -16,7 +17,6 @@ const WorldScene = new Phaser.Class({
   create() {
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
-    // const grass = map.createStaticLayer('Grass', tiles, 0, 0);
     const obstacles = map.createLayer('Obstacles', tiles, 0, 0);
     this.score = 0;
     this.scoreText = this.add.text(8, 8, `Score: ${this.score}`, { fontSize: '12px', fill: '#fff' });
@@ -31,15 +31,12 @@ const WorldScene = new Phaser.Class({
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
-    //  animation with key 'left',
-    // we don't need left and right as we will use one and flip the sprite
     this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('player', { frames: [1, 7, 1, 13] }),
       frameRate: 10,
       repeat: -1,
     });
-    // animation with key 'right'
     this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('player', { frames: [1, 7, 1, 13] }),
@@ -63,32 +60,27 @@ const WorldScene = new Phaser.Class({
     for (let i = 0; i < 30; i++) {
       const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
-      // parameters are x, y, width, height
       this.spawns.create(x, y, 20, 20);
     }
     this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
     this.sys.events.on('wake', this.wake, this);
   },
   onMeetEnemy(zone) {
-    // we move the zone to some other location
     zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
-    // shake the world
     this.cameras.main.flash(300);
     this.scene.switch('BattleScene');
   },
   update() {
     this.player.body.setVelocity(0);
 
-    // Horizontal movement
     if (this.cursors.left.isDown) {
       this.player.body.setVelocityX(-80);
     } else if (this.cursors.right.isDown) {
       this.player.body.setVelocityX(80);
     }
 
-    // Vertical movement
     if (this.cursors.up.isDown) {
       this.player.body.setVelocityY(-80);
     } else if (this.cursors.down.isDown) {
@@ -136,9 +128,6 @@ const WorldScene = new Phaser.Class({
     })
       .then(() => {
         this.scene.switch('BootScene');
-      })
-      .catch((error) => {
-        console.log(error);
       });
   },
 });

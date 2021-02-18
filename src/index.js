@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import config from './config/config';
 
-new Phaser.Game(config);
+const game = new Phaser.Game(config);
+game();
 /* class Game extends Phaser.Game {
   constructor() {
     super(Config);

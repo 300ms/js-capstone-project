@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import Phaser from 'phaser';
 import axios from 'axios';
 
@@ -35,9 +36,6 @@ const highScoresScene = new Phaser.Class({
     axios.get(baseUrl)
       .then((response) => {
         this.listHighScores(response);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   },
   listHighScores(response) {
