@@ -20,7 +20,6 @@ const BootScene = new Phaser.Class({
 
   create() {
     this.add.text(100, 50, 'Welcome!');
-    /* this.scene.start('bootScene'); */
     const newGameButton = this.add.text(100, 150, 'New Game!', { fill: '#0f0' });
     const highScoresButton = this.add.text(100, 200, 'HighScores!', { fill: '#0f0' });
     this.nameInput = this.add.dom(100, 100).createFromCache('form');

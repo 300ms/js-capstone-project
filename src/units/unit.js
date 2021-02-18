@@ -10,7 +10,7 @@ const Unit = new Phaser.Class({
     this.type = type;
     this.maxHp = hp;
     this.hp = hp;
-    this.damage = damage; // default damage
+    this.damage = damage;
     this.living = true;
     this.menuItem = null;
   },
