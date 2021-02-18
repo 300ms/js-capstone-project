@@ -26,6 +26,10 @@ const WorldScene = new Phaser.Class({
     this.physics.world.bounds.height = map.heightInPixels;
     this.player.setCollideWorldBounds(true);
     this.cursors = this.input.keyboard.createCursorKeys();
+
+
+    this.esc = this.input.keyboard.addKey('ESC');
+
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
@@ -66,7 +70,6 @@ const WorldScene = new Phaser.Class({
     }
     this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
     this.sys.events.on('wake', this.wake, this);
-    this.input.keyboard.on('keydown_ESC', this.backToMenu, this);
   },
   onMeetEnemy(player, zone) {
     // we move the zone to some other location
@@ -108,6 +111,13 @@ const WorldScene = new Phaser.Class({
     } else {
       this.player.anims.stop();
     }
+
+    if (this.esc.isDown) {
+      const name = 'Player';
+      this.registerScore(name, this.score).then(() => {
+        this.scene.switch('BootScene');
+      });
+    }
   },
   wake() {
     this.cursors.left.reset();
@@ -122,20 +132,16 @@ const WorldScene = new Phaser.Class({
     this.score += score;
     this.scoreText.setText(`Score: ${this.score}`);
   },
-  async backToMenu() {
-    const name = 'Player';
-    this.registerScore(name, this.score).then(() => {
-      this.scene.switch('BootScene');
-    });
-  },
-  async registerScore(name, score) {
-    const parameters = {
-      name,
-      score,
-    };
-    const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/UBfouuLgu88709ObQASP/';
+  backToMenu() {
 
-    axios.post(baseUrl, parameters)
+  },
+  async registerScore(user, score) {
+    const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/XNEYrKflyHKjlImWvLxZ/scores';
+
+    axios.post(baseUrl, {
+      user,
+      score,
+    })
       .then((response) => {
         console.log(response);
       })
