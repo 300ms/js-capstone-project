@@ -24,17 +24,21 @@ const BootScene = new Phaser.Class({
     /* this.load.image('dragonblue', 'assets/dragonblue.png');
 
     this.load.image('dragonorrange', 'assets/dragonorrange.png'); */
+
+    this.load.html('form', 'form.html');
   },
 
   create() {
     this.add.text(100, 50, 'Welcome!');
     /* this.scene.start('bootScene'); */
-    const newGameButton = this.add.text(100, 100, 'New Game!', { fill: '#0f0' });
-    const highScoresButton = this.add.text(100, 150, 'HighScores!', { fill: '#0f0' });
+    const newGameButton = this.add.text(100, 150, 'New Game!', { fill: '#0f0' });
+    const highScoresButton = this.add.text(100, 200, 'HighScores!', { fill: '#0f0' });
+    this.nameInput = this.add.dom(100, 100).createFromCache('form');
 
     newGameButton
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
+        this.name = this.nameInput.getChildByName('name').value;
         this.scene.start('WorldScene');
       })
       .on('pointerover', () => {
@@ -62,6 +66,9 @@ const BootScene = new Phaser.Class({
       .on('pointerout', () => {
         highScoresButton.setStyle({ fill: '#0f0' });
       });
+  },
+  getName() {
+    return this.name;
   },
 });
 

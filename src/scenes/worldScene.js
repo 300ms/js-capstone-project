@@ -26,10 +26,8 @@ const WorldScene = new Phaser.Class({
     this.physics.world.bounds.height = map.heightInPixels;
     this.player.setCollideWorldBounds(true);
     this.cursors = this.input.keyboard.createCursorKeys();
-
-
+    this.name = this.scene.get('BootScene').getName();
     this.esc = this.input.keyboard.addKey('ESC');
-
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
@@ -71,19 +69,16 @@ const WorldScene = new Phaser.Class({
     this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
     this.sys.events.on('wake', this.wake, this);
   },
-  onMeetEnemy(player, zone) {
+  onMeetEnemy(zone) {
     // we move the zone to some other location
     zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
     // shake the world
     this.cameras.main.flash(300);
-    // this.cameras.main.shake(duration);
-    // this.cameras.main.fade(duration);
-    // start battle
     this.scene.switch('BattleScene');
   },
-  update(time, delta) {
+  update() {
     this.player.body.setVelocity(0);
 
     // Horizontal movement
@@ -113,10 +108,7 @@ const WorldScene = new Phaser.Class({
     }
 
     if (this.esc.isDown) {
-      const name = 'Player';
-      this.registerScore(name, this.score).then(() => {
-        this.scene.switch('BootScene');
-      });
+      this.registerScore(this.name, this.score);
     }
   },
   wake() {
@@ -142,8 +134,8 @@ const WorldScene = new Phaser.Class({
       user,
       score,
     })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
+        this.scene.switch('BootScene');
       })
       .catch((error) => {
         console.log(error);

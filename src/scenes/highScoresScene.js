@@ -12,7 +12,7 @@ const highScoresScene = new Phaser.Class({
     },
 
   create() {
-    this.add.text(100, 100, 'HighScores!');
+    this.add.text(100, 20, 'HighScores!');
     /* this.scene.start('bootScene'); */
     this.getHighScores();
     const mainMenu = this.add.text(100, 220, 'Back to Main Menu!', { fill: '#0f0' });
@@ -34,7 +34,6 @@ const highScoresScene = new Phaser.Class({
 
     axios.get(baseUrl)
       .then((response) => {
-        console.log(response);
         this.listHighScores(response);
       })
       .catch((error) => {
@@ -42,9 +41,10 @@ const highScoresScene = new Phaser.Class({
       });
   },
   listHighScores(response) {
-    const { result } = response.data;
+    let { result } = response.data;
+    result = result.sort((a, b) => ((a.score > b.score) ? -1 : 1));
     for (let i = 0; i < 5; i++) {
-      this.add.text(100, 120 + i * 25, `${result[i].user} = ${result[i].score}`, { fill: '#0f0' });
+      this.add.text(100, 50 + i * 20, `${result[i].user} = ${result[i].score}`, { fill: '#0f0' });
     }
   },
 });

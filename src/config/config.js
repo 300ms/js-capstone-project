@@ -12,6 +12,9 @@ const config = {
   height: 240,
   zoom: 2,
   pixelArt: true,
+  dom: {
+    createContainer: true,
+  },
   physics: {
     default: 'arcade',
     arcade: {
