@@ -15,4 +15,4 @@ const ActionsMenu = new Phaser.Class({
   },
 });
 
-export { ActionsMenu as default };
+export default ActionsMenu;

@@ -14,4 +14,4 @@ const EnemiesMenu = new Phaser.Class({
   },
 });
 
-export { EnemiesMenu as default };
+export default EnemiesMenu;

@@ -35,4 +35,4 @@ const Unit = new Phaser.Class({
   },
 });
 
-export { Unit as default };
+export default Unit;

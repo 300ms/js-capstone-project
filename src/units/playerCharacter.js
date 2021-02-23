@@ -13,4 +13,4 @@ const PlayerCharacter = new Phaser.Class({
   },
 });
 
-export { PlayerCharacter as default };
+export default PlayerCharacter;

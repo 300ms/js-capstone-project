@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import Phaser from 'phaser';
 import Enemy from '../units/enemy';
 import PlayerCharacter from '../units/playerCharacter';
@@ -44,7 +43,7 @@ const BattleScene = new Phaser.Class({
       return;
     }
     do {
-      this.index++;
+      this.index += 1;
       if (this.index >= this.units.length) {
         this.index = 0;
       }
@@ -62,11 +61,11 @@ const BattleScene = new Phaser.Class({
   },
   checkEndBattle() {
     let victory = true;
-    for (let i = 0; i < this.enemies.length; i++) {
+    for (let i = 0; i < this.enemies.length; i += 1) {
       if (this.enemies[i].living) victory = false;
     }
     let gameOver = true;
-    for (let i = 0; i < this.heroes.length; i++) {
+    for (let i = 0; i < this.heroes.length; i += 1) {
       if (this.heroes[i].living) gameOver = false;
     }
 
@@ -86,7 +85,7 @@ const BattleScene = new Phaser.Class({
     });
     this.heroes.length = 0;
     this.enemies.length = 0;
-    for (let i = 0; i < this.units.length; i++) {
+    for (let i = 0; i < this.units.length; i += 1) {
       this.units[i].destroy();
     }
     this.units.length = 0;
@@ -109,4 +108,4 @@ const BattleScene = new Phaser.Class({
   },
 });
 
-export { BattleScene as default };
+export default BattleScene;

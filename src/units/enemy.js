@@ -10,4 +10,4 @@ const Enemy = new Phaser.Class({
     },
 });
 
-export { Enemy as default };
+export default Enemy;

@@ -54,4 +54,4 @@ const BootScene = new Phaser.Class({
   },
 });
 
-export { BootScene as default };
+export default BootScene;

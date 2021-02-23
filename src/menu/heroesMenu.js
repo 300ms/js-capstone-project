@@ -11,4 +11,4 @@ const HeroesMenu = new Phaser.Class({
   },
 });
 
-export { HeroesMenu as default };
+export default HeroesMenu;

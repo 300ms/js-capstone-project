@@ -49,6 +49,34 @@
 
 We have been asked to build a platform game such as the turn-based RPG game. We tried to design a simple but creative game, and implement it using Phaser.
 
+The Game logic is, player walks around the map, find enemies and destroy them. In a fight, for each enemy unit gets destroyed, player earns 10 points. For each player character unit gets destroyed, player loses 10 points. 
+
+The Game contains:
+
+<h3>5 scenes</h3>
+
+* BootScene: This is the first scene displayed. It contains directions to a new game or to the Highscores Scene.
+
+* WorldScene: This is the scene that displayed when player starts to a new game. Player has a character to move on the map in boundaries. There are several, invisible, randomly spawned boxes on this scene. When character collides with one of these boxes, battle begins and this scene gets swapped with the BattleScene. When player press on "ESC" button on this scene, player score gets registered by LeaderBoard API request.
+
+* BattleScene: This is the scene that displayed when user gets into a battle. Enemy characters are at the left side, player characters are at the right side. 3 different action menus at the bottom of the screen.
+
+
+* UIScene: This is the scene that controls the UI elements in the Battle Scene like action menus and characters on the screen. It gets the Battle Scene and works with it.
+
+* Highscores Scene: This is the scene that displays the top 5 scores of this game. It gets all scores by LeaderBoard API request, filter the highest 5 of them and print on the screen.
+
+<h3>2 types of units</h3>
+
+* Player Character: Character type belongs to the player which is being used to fight against enemies.
+* Enemy Character: Simple enemy characters which must be found and destroyed to earn points.
+
+<h3>3 types of Action Menus</h3>
+
+* Heroes Menu, contains the list of player characters. Characters are picked by the turn, not the player.
+* Action Menu, contains the list of actions. Action is picked by the player. In this game, there is only one action named "Attack".
+* Enemies Menu, contains the list of enemies. Enemy is picked by the player.
+
 ### Built With
 Components of this project is listed below;
 
@@ -63,8 +91,14 @@ Components of this project is listed below;
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This project has been deployed on github pages, you can visit page or download/clone
-repository from github to try it.
+This project has been deployed on heroku as an application, you can visit the app on heroku to play the game on your browser.
+
+If you want to download and try the application in your local,
+  Setup NodeJs on your local machine from https://nodejs.org/en/,
+  Clone the project into your local machine,
+  By using proper command shell, get into the application folder and use "npm install" to install the components,
+  Use "npm run start" to start the application in your local machine,
+  Open your browser and visit the "localhost/8080" to play the game.
 
 
 <!-- USAGE EXAMPLES -->
@@ -72,7 +106,7 @@ repository from github to try it.
 
 * On the boot scene, click on Highscores button to see the top 5 highscores
 * Enter a name into the input field and click on New Game button to start a new game.
-* Use arrow keys to run around the map, there are randomly spawned enemies. Find and fight :)
+* Use arrow keys to walk around the map, there are invisible, randomly spawned enemies. Find and destroy :)
 * For each enemy unit you destroy, earn 10 pts. For each hero of yours gets destroyed, lose 10 pts.
 * Click "ESC" button to save your score and turn back to the boot scene.
 

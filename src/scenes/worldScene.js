@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import Phaser from 'phaser';
 import axios from 'axios';
 
@@ -17,6 +16,7 @@ const WorldScene = new Phaser.Class({
   create() {
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
+    // eslint-disable-next-line no-unused-vars
     const grass = map.createStaticLayer('Grass', tiles, 0, 0);
     const obstacles = map.createLayer('Obstacles', tiles, 0, 0);
     this.score = 0;
@@ -58,7 +58,7 @@ const WorldScene = new Phaser.Class({
     });
     this.physics.add.collider(this.player, obstacles);
     this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 30; i += 1) {
       const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
       this.spawns.create(x, y, 20, 20);
@@ -133,4 +133,4 @@ const WorldScene = new Phaser.Class({
   },
 });
 
-export { WorldScene as default };
+export default WorldScene;

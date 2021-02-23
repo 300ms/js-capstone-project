@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import Phaser from 'phaser';
 import axios from 'axios';
 
@@ -40,10 +39,10 @@ const highScoresScene = new Phaser.Class({
   listHighScores(response) {
     let { result } = response.data;
     result = result.sort((a, b) => ((a.score > b.score) ? -1 : 1));
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i += 1) {
       this.add.text(100, 50 + i * 20, `${result[i].user} = ${result[i].score}`, { fill: '#0f0' });
     }
   },
 });
 
-export { highScoresScene as default };
+export default highScoresScene;

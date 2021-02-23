@@ -110,4 +110,4 @@ const UIScene = new Phaser.Class({
   },
 });
 
-export { UIScene as default };
+export default UIScene;
