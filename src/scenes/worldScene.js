@@ -17,7 +17,7 @@ const WorldScene = new Phaser.Class({
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
     // eslint-disable-next-line no-unused-vars
-    const grass = map.createStaticLayer('Grass', tiles, 0, 0);
+    const grass = map.createLayer('Grass', tiles, 0, 0);
     const obstacles = map.createLayer('Obstacles', tiles, 0, 0);
     this.score = 0;
     this.scoreText = this.add.text(8, 8, `Score: ${this.score}`, { fontSize: '12px', fill: '#fff' });
@@ -100,8 +100,10 @@ const WorldScene = new Phaser.Class({
       this.player.anims.stop();
     }
 
-    if (this.esc.isDown) {
-      this.registerScore(this.name, this.score);
+    if (Phaser.Input.Keyboard.JustDown(this.esc)) {
+      (async () => {
+        await this.registerScore(this.name, this.score);
+      })();
     }
   },
   wake() {
@@ -116,9 +118,6 @@ const WorldScene = new Phaser.Class({
   setScore(score) {
     this.score += score;
     this.scoreText.setText(`Score: ${this.score}`);
-  },
-  backToMenu() {
-
   },
   async registerScore(user, score) {
     const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/XNEYrKflyHKjlImWvLxZ/scores';

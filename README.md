@@ -100,11 +100,11 @@ Components of this project is listed below;
 This project has been deployed on heroku as an application, you can visit the app on heroku to play the game on your browser.
 
 If you want to download and try the application in your local,
-  Setup NodeJs on your local machine from https://nodejs.org/en/,
-  Clone the project into your local machine,
-  By using proper command shell, get into the application folder and use "npm install" to install the components,
-  Use "npm run start" to start the application in your local machine,
-  Open your browser and visit the "localhost/8080" to play the game.
+  * Setup NodeJs on your local machine from https://nodejs.org/en/,
+  * Clone the project into your local machine,
+  * By using proper command shell, get into the application folder and use "npm install" to install the components,
+  * Use "npm run start" to start the application in your local machine,
+  * Open your browser and visit the "localhost/8080" to play the game.
 
 
 <!-- USAGE EXAMPLES -->

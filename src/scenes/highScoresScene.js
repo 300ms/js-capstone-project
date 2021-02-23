@@ -13,7 +13,9 @@ const highScoresScene = new Phaser.Class({
 
   create() {
     this.add.text(100, 20, 'HighScores!');
-    this.getHighScores();
+    (async () => {
+      await this.getHighScores();
+    })();
     const mainMenu = this.add.text(100, 220, 'Back to Main Menu!', { fill: '#0f0' });
 
     mainMenu
