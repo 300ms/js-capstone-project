@@ -17,6 +17,7 @@ const WorldScene = new Phaser.Class({
   create() {
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
+    const grass = map.createStaticLayer('Grass', tiles, 0, 0);
     const obstacles = map.createLayer('Obstacles', tiles, 0, 0);
     this.score = 0;
     this.scoreText = this.add.text(8, 8, `Score: ${this.score}`, { fontSize: '12px', fill: '#fff' });
