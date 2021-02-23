@@ -33,6 +33,10 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+  * [Game Design](#game-design)
+    * [Scenes](#scenes)
+    * [Units](#units)
+    * [Menus](#menus)
   * [Built With](#built-with)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
@@ -47,13 +51,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+### Game Design
 We have been asked to build a platform game such as the turn-based RPG game. We tried to design a simple but creative game, and implement it using Phaser.
 
 The Game logic is, player walks around the map, find enemies and destroy them. In a fight, for each enemy unit gets destroyed, player earns 10 points. For each player character unit gets destroyed, player loses 10 points. 
 
 The Game contains:
 
-<h3>5 scenes</h3>
+#### Scenes
 
 * BootScene: This is the first scene displayed. It contains directions to a new game or to the Highscores Scene.
 
@@ -66,25 +71,26 @@ The Game contains:
 
 * Highscores Scene: This is the scene that displays the top 5 scores of this game. It gets all scores by LeaderBoard API request, filter the highest 5 of them and print on the screen.
 
-<h3>2 types of units</h3>
+#### Units
 
 * Player Character: Character type belongs to the player which is being used to fight against enemies.
 * Enemy Character: Simple enemy characters which must be found and destroyed to earn points.
 
-<h3>3 types of Action Menus</h3>
+#### Menus
 
 * Heroes Menu, contains the list of player characters. Characters are picked by the turn, not the player.
 * Action Menu, contains the list of actions. Action is picked by the player. In this game, there is only one action named "Attack".
 * Enemies Menu, contains the list of enemies. Enemy is picked by the player.
 
+
 ### Built With
 Components of this project is listed below;
 
-* Phaser 3
 * Javascript - ES6
+* [Phaser 3](https://phaser.io/)
 * [WebPack](https://webpack.js.org/)
-* VsCode
-* EsLint
+* [VsCode](https://code.visualstudio.com/)
+* [EsLint](https://eslint.org/)
 
 
 
