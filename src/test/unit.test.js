@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Enemy from '../units/enemy';
 import PlayerCharacter from '../units/playerCharacter';
 
