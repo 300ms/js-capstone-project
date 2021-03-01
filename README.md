@@ -24,6 +24,8 @@
     <a href="https://rpg-game-capstone.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/300ms/js-capstone-project/issues">Report Bug & Request Feature</a>
+    .
+    <a href="https://www.loom.com/share/0f554c808df549098350e3f055a178a3"> Short Video instruction </a>
   </p>
 </p>
 
