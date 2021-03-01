@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const highScoresScene = new Phaser.Class({
 
@@ -36,6 +37,13 @@ const highScoresScene = new Phaser.Class({
     axios.get(baseUrl)
       .then((response) => {
         this.listHighScores(response);
+      })
+      .catch(() => {
+        Swal.fire({
+          title: 'Oops...',
+          text: 'Something went wrong! Your score was not registered. Please try again later.',
+          icon: 'warning',
+        });
       });
   },
   listHighScores(response) {

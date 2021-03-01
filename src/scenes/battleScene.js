@@ -23,7 +23,7 @@ const BattleScene = new Phaser.Class({
     const mage = new PlayerCharacter(this, 250, 100, 'player', 4, 'Mage', 10, 5);
     this.add.existing(mage);
 
-    const dragonblue = new Enemy(this, 50, 50, 'enemy', 17, 'Dragon', 11, 3);
+    const dragonblue = new Enemy(this, 50, 50, 'enemy', 17, 'Dragon', 10, 3);
     this.add.existing(dragonblue);
 
     const dragonOrange = new Enemy(this, 50, 100, 'enemy', 18, 'Dragon2', 10, 3);

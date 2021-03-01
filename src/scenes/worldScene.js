@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const WorldScene = new Phaser.Class({
 
@@ -29,6 +30,7 @@ const WorldScene = new Phaser.Class({
     this.cursors = this.input.keyboard.createCursorKeys();
     this.name = this.scene.get('BootScene').getName();
     this.esc = this.input.keyboard.addKey('ESC');
+    this.f1 = this.input.keyboard.addKey('F1');
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
@@ -105,6 +107,12 @@ const WorldScene = new Phaser.Class({
         await this.registerScore(this.name, this.score);
       })();
     }
+
+    if (Phaser.Input.Keyboard.JustDown(this.f1)) {
+      (async () => {
+        await this.registerScore(this.name, this.score, 1);
+      })();
+    }
   },
   wake() {
     this.cursors.left.reset();
@@ -119,7 +127,7 @@ const WorldScene = new Phaser.Class({
     this.score += score;
     this.scoreText.setText(`Score: ${this.score}`);
   },
-  async registerScore(user, score) {
+  async registerScore(user, score, scene = 0) {
     const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/XNEYrKflyHKjlImWvLxZ/scores';
 
     axios.post(baseUrl, {
@@ -127,7 +135,18 @@ const WorldScene = new Phaser.Class({
       score,
     })
       .then(() => {
-        this.scene.switch('BootScene');
+        if (scene === 0) {
+          this.scene.switch('BootScene');
+        } else {
+          this.scene.switch('HighScoresScene');
+        }
+      })
+      .catch(() => {
+        Swal.fire({
+          title: 'Oops...',
+          text: 'Something went wrong! Your score was not registered. Please try again later.',
+          icon: 'warning',
+        });
       });
   },
 });

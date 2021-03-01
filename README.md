@@ -56,22 +56,22 @@
 ### Game Design
 We have been asked to build a platform game such as the turn-based RPG game. We tried to design a simple but creative game, and implement it using Phaser.
 
-The Game logic is, player walks around the map, find enemies and destroy them. In a fight, for each enemy unit gets destroyed, player earns 10 points. For each player character unit gets destroyed, player loses 10 points. 
+The Game logic is, the player walks around the map, finds enemies, and destroys them. In a fight, for each enemy unit to get destroyed, the player earns 10 points. For each player character unit gets destroyed, the player loses 10 points.
 
 The Game contains:
 
 #### Scenes
 
-* BootScene: This is the first scene displayed. It contains directions to a new game or to the Highscores Scene.
+* BootScene: This is the first scene displayed. It contains directions to a new game or the Highscores Scene.
 
-* WorldScene: This is the scene that displayed when player starts to a new game. Player has a character to move on the map in boundaries. There are several, invisible, randomly spawned boxes on this scene. When character collides with one of these boxes, battle begins and this scene gets swapped with the BattleScene. When player press on "ESC" button on this scene, player score gets registered by LeaderBoard API request.
+* WorldScene: This is the scene that is displayed when the player starts a new game. The Player has a character to move on the map in boundaries. There are several, invisible, randomly spawned boxes on this scene. When the character collides with one of these boxes, a battle begins and this scene gets swapped with the battle scene. When the player presses on the "ESC" button on this scene, the player's score gets registered by LeaderBoard API request and returns to the boot scene. When the player presses on "F1" on this scene, the player's score gets registered the same as the "ESC" button, but the player returns to the high scores scene.
 
-* BattleScene: This is the scene that displayed when user gets into a battle. Enemy characters are at the left side, player characters are at the right side. 3 different action menus at the bottom of the screen.
+* BattleScene: This is the scene that is displayed when the player gets into a battle. Enemy characters are on the left side, player characters are on the right side. 3 different action menus at the bottom of the screen.
 
 
 * UIScene: This is the scene that controls the UI elements in the Battle Scene like action menus and characters on the screen. It gets the Battle Scene and works with it.
 
-* Highscores Scene: This is the scene that displays the top 5 scores of this game. It gets all scores by LeaderBoard API request, filter the highest 5 of them and print on the screen.
+* Highscores Scene: This is the scene that displays the top 5 scores of this game. It gets all scores by LeaderBoard API request, filters the highest 5 of them, and prints on the screen.
 
 #### Units
 
@@ -82,7 +82,7 @@ The Game contains:
 
 * Heroes Menu, contains the list of player characters. Characters are picked by the turn, not the player.
 * Action Menu, contains the list of actions. Action is picked by the player. In this game, there is only one action named "Attack".
-* Enemies Menu, contains the list of enemies. Enemy is picked by the player.
+* Enemies Menu, contains the list of enemies. The enemy is picked by the player.
 
 
 ### Built With
