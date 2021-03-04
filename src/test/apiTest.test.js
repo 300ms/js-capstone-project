@@ -1,13 +1,10 @@
 import { getHighScores, registerScore } from './apiMock';
 
 describe('Get High Scores', () => {
-  test('Success', async () => {
-    await getHighScores()
+  test('Success', () => {
+    getHighScores()
       .then((result) => {
         expect(result).toBe('Success');
-      })
-      .catch((result) => {
-        expect(result).toBe('Fail');
       });
   });
 });
@@ -17,8 +14,12 @@ describe('Register a new Score', () => {
     registerScore('name123', 1234)
       .then((result) => {
         expect(result).toBe('Success');
-      })
-      .catch((result) => {
+      });
+  });
+
+  test('Fail', () => {
+    registerScore('name123', 0)
+      .then((result) => {
         expect(result).toBe('Fail');
       });
   });
