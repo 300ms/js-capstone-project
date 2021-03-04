@@ -58,6 +58,12 @@ We have been asked to build a platform game such as the turn-based RPG game. We 
 
 The Game logic is, the player walks around the map, finds enemies, and destroys them. In a fight, for each enemy unit to get destroyed, the player earns 10 points. For each player character unit gets destroyed, the player loses 10 points.
 
+* In the boot scene, write a name and click on the "New Game" button to start a new game, or click on the "Highscores" button to see the high scores.
+
+* In the world scene, use arrow keys to move and try to find enemies. Use the "ESC" key to register your score and turn back to the boot scene. Use the "F1" key to register your score and turn back to the high scores scene.
+
+* In the battle scene, use arrow keys to move between options of menus and use the "SpaceBar" to select the currently active option.
+
 The Game contains:
 
 #### Scenes
